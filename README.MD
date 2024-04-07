@@ -14,3 +14,8 @@ Run this script
 ```
 docker-compose up -d 
 ```
+
+### Run service
+```
+npm run dev
+```
