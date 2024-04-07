@@ -15,16 +15,26 @@ jest.mock('../src/redis', () => ({
 
 describe('Account Controller', () => {
   let token: string = ''
-    beforeAll( async () => {
-      await UserModel.deleteMany({ username: 'test'});
-      await AccountModel.deleteMany({ userName: 'test'});
+    beforeAll(async () => {
       await mongoose.connect(`${Config.MONGODB_URI}`);
       await redisClient.connect();
-      const user = {
+    });
+
+    beforeEach( async () => {
+      await UserModel.deleteMany({ username: 'test'});
+      await AccountModel.deleteMany({ userName: 'test'});
+
+      let user: any = {
+        username: 'test',
+        password: 'test',
+        name: 'test',
+      }
+      let response = await request(app).post('/api/users').send(user);
+      user = {
         username: "hansin91",
         password: "supersecure"
       }
-      const response = await request(app).post('/api/users/login').send(user);
+      response = await request(app).post('/api/users/login').send(user);
       token = response.body.token;
     });
 
@@ -49,6 +59,18 @@ describe('Account Controller', () => {
           expect(response.body).toHaveProperty('accountNumber', '3298479234');
           expect(response.body).toHaveProperty('emailAddress');
           expect(response.body).toHaveProperty('identityNumber'); 
+        });
+
+        it('should be rejected if request is invalid', async () => {
+          const account = {
+            userName: "test",
+            accountNumber: "3298479234",
+            emailAddress: "test@example.com",
+          }
+          const response = await request(app).post('/api/accounts').send(account)
+          .set('Authorization', `Bearer ${token}`);
+          expect(response.status).toBe(400);
+          expect(response.error).toBeDefined();
         });
     });
 });
