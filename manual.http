@@ -1,0 +1,71 @@
+### Register
+POST http://localhost:3001/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username" : "hansin91",
+  "name" : "Hansin Susatya",
+  "password" : "supersecure"
+}
+
+### Login
+POST http://localhost:3001/api/users/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username" : "hansin91",
+  "password" : "supersecure"
+}
+
+### Create account
+POST http://localhost:3001/api/accounts
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhbnNpbjkxIiwibmFtZSI6IkhhbnNpbiBTdXNhdHlhIiwiaWF0IjoxNzEyNDc0MTc0LCJleHAiOjE3MTI0Nzc3NzR9.EobRB_WkZH1B_5ERYfrnmCemCmw47-sxKwjo7mDavBA
+
+{
+  "userName": "hansin91",
+  "accountNumber": "3242423423423",
+  "emailAddress": "hansin@example.com",
+  "identityNumber": "32432432423"
+}
+
+### Update account
+PUT http://localhost:3001/api/accounts/6611e929a3e35f2a11334620
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhbnNpbjkxIiwibmFtZSI6IkhhbnNpbiBTdXNhdHlhIiwiaWF0IjoxNzEyNDg0NDc0LCJleHAiOjE3MTI0ODgwNzR9.SFqL_ZE3hLNGBmubUeM7TBIotJoXjgyu6v1FzQemFGo
+
+{
+  "userName": "hansin91",
+  "accountNumber": "29374923234",
+  "emailAddress": "now@example.com",
+  "identityNumber": "23741242903482"
+}
+
+### Delete account
+DELETE http://localhost:3001/api/accounts/6611e5be0aee446adfe0159c
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhbnNpbjkxIiwibmFtZSI6IkhhbnNpbiBTdXNhdHlhIiwiaWF0IjoxNzEyNDQ3MDkxLCJleHAiOjE3MTI0NTA2OTF9.2I3mcnJIT7ISRl8DWJOSJSLg2FGwOubXCfkZHLSj-IU
+
+{
+  "userName": "hansin91",
+  "accountNumber": "29374923234",
+  "emailAddress": "now@example.com",
+  "identityNumber": "23741242903482"
+}
+
+### Search account
+GET http://localhost:3001/api/accounts?identity_number=3209&account_number=3423
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhbnNpbjkxIiwibmFtZSI6IkhhbnNpbiBTdXNhdHlhIiwiaWF0IjoxNzEyNDgyNDAyLCJleHAiOjE3MTI0ODYwMDJ9.61c49VRevgK5S0sKXY0fmLujvFj03rGzmvL3pOorXkQ
+
+### Get account
+GET http://localhost:3001/api/accounts/6611e929a3e35f2a11334620
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhbnNpbjkxIiwibmFtZSI6IkhhbnNpbiBTdXNhdHlhIiwiaWF0IjoxNzEyNDgyNDAyLCJleHAiOjE3MTI0ODYwMDJ9.61c49VRevgK5S0sKXY0fmLujvFj03rGzmvL3pOorXkQ

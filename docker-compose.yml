@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+
+  redis:
+      container_name: redis_hansinsusatya_betest
+      image: redis:latest
+      restart: always
+      environment: 
+        - REDIS_PASSWORD=supersecureredis
+      ports:
+        - '6379:6379'
+      command: redis-server --requirepass supersecureredis
+      volumes:
+        - ./docker-volumes/cache:/data
+
+  mongodb:
+    container_name: mongodb_container
+    image: mongo:latest
+    restart: always
+    command: ["--auth"]
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=supersecuremongo
+    ports: 
+      - 27017:27017
+    volumes: 
+      - ./mongo-init:/docker-entrypoint-initdb.d 
+      - ./docker-volumes/data:/data/db
