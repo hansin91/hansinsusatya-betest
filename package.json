@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev -r tsconfig-paths/register src/app.ts",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,7 @@
     "http-status-codes": "^2.3.0",
     "joi": "^17.12.3",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.0",
+    "mongoose": "^7.6.10",
     "redis": "^4.6.13"
   },
   "devDependencies": {
@@ -42,6 +43,7 @@
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
     "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.4",
     "typescript-eslint": "^7.5.0"
