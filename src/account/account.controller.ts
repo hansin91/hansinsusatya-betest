@@ -37,7 +37,7 @@ class AccountController {
         size: Number(size) || 30,
       };
       const result = await this.accountService.search(request);
-      return res.status(StatusCodes.CREATED).json(result);
+      return res.status(StatusCodes.OK).json(result);
     } catch (error: any) {
       return res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
     }
