@@ -15,6 +15,11 @@ Run this script
 docker-compose up -d 
 ```
 
+### Install dependencies
+```
+npm install
+```
+
 ### Run service
 ```
 npm run dev
