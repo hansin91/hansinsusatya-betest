@@ -22,7 +22,8 @@ const config: Config.InitialOptions = {
   },
   coverageReporters: ['text-summary', 'lcov'],
   moduleNameMapper: {
-    '@account/(.*)': ['<rootDir>/src/account/$1']
+    '@account/(.*)': ['<rootDir>/src/account/$1'],
+    '@user/(.*)': ['<rootDir>/src/user/$1']
   }
 };
 
