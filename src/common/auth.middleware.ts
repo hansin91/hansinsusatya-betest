@@ -25,11 +25,11 @@ export const authMiddleware = (req: any, res: Response, next: NextFunction) => {
         .json({ message: 'Invalid token' });
     }
     const { username } = decoded;
-    const user = await UserModel.findOne({ username })
+    const user = await UserModel.findOne({ username });
     if (!user) {
       return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .json({ message: 'Unauthorized' });
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: 'Unauthorized' });
     }
     req.user = decoded;
     next();

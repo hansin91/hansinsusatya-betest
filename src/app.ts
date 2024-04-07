@@ -4,7 +4,7 @@ import { start } from './server';
 
 const app: Express = express();
 const initialize = (): void => {
-  databaseConnection();  
+  databaseConnection();
   start(app);
 };
 

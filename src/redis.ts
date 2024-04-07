@@ -5,7 +5,10 @@ type RedisClient = ReturnType<typeof createClient>;
 export class Redis {
   private client: RedisClient;
   constructor() {
-    this.client = createClient({ url: 'redis://localhost:6379', password: Config.REDIS_PASSWORD });
+    this.client = createClient({
+      url: 'redis://localhost:6379',
+      password: Config.REDIS_PASSWORD,
+    });
   }
 
   public getClient = (): RedisClient => {
@@ -21,14 +24,14 @@ export class Redis {
     }
   };
 
-  public disconnect = async (): Promise<void> => {  
+  public disconnect = async (): Promise<void> => {
     try {
       await this.client.disconnect();
       console.info(`redis client disconnected from redis server`);
     } catch (error) {
       console.log('error', 'redis client disconnection error:', error);
     }
-  }
+  };
 }
 
 export const redisClient: Redis = new Redis();
