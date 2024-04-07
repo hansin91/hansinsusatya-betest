@@ -25,7 +25,8 @@
       { "transform": "typescript-transform-paths", "afterDeclarations": true },
     ],
     "paths": {
-      "@users/*": ["src/user/*"]
+      "@user/*": ["src/user/*"],
+      "@account/*": ["src/account/*"],
     }
   },
   "include": ["src"],

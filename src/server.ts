@@ -4,8 +4,8 @@ import { Config } from './config';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import cors from 'cors';
-import userRouter from '@users/user.route';
-import accountRouter from './account/account.route';
+import userRouter from '@user/user.route';
+import accountRouter from '@account/account.route';
 import { redisClient } from './redis';
 
 const startServer = (app: Application): void => {

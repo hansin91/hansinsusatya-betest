@@ -2,7 +2,7 @@ import { Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import jwt from 'jsonwebtoken';
 import { Config } from '../config';
-import { UserModel } from '@users/user.schema';
+import { UserModel } from '@user/user.schema';
 
 export const authMiddleware = (req: any, res: Response, next: NextFunction) => {
   const authorization = req.headers.authorization;
