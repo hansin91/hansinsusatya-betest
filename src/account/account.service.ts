@@ -83,31 +83,37 @@ export class AccountService {
 
   get = async (request: GetAccountRequest): Promise<AccountResponse> => {
     try {
-        const getAccountRequest = this.validationService.validate(AccountValidation.GET, request);
-        if (getAccountRequest.error) {
-          throw new Error(getAccountRequest.error.message);
-        }
+      const getAccountRequest = this.validationService.validate(
+        AccountValidation.GET,
+        request,
+      );
+      if (getAccountRequest.error) {
+        throw new Error(getAccountRequest.error.message);
+      }
 
-        const cache = await redisClient.getClient().get(getAccountRequest.value.id);
-        if (cache) {
-          console.log('cache');
-          return JSON.parse(cache);
-        }
-        const account = await AccountModel.findById(getAccountRequest.value.id);
-        if (!account) {
-          throw new Error('Account not found');
-        }
-        const data = {
-          id: account._id.toString(),
-          userName: account.userName,
-          accountNumber: account.accountNumber,
-          emailAddress: account.emailAddress,
-          identityNumber: account.identityNumber,
-        }
-        await redisClient.getClient().setEx(getAccountRequest.value.id, 3600, JSON.stringify(data));
+      const cache = await redisClient
+        .getClient()
+        .get(getAccountRequest.value.id);
+      if (cache) {
+        console.log('cache');
+        return JSON.parse(cache);
+      }
+      const account = await AccountModel.findById(getAccountRequest.value.id);
+      if (!account) {
+        throw new Error('Account not found');
+      }
+      const data = {
+        id: account._id.toString(),
+        userName: account.userName,
+        accountNumber: account.accountNumber,
+        emailAddress: account.emailAddress,
+        identityNumber: account.identityNumber,
+      };
+      await redisClient
+        .getClient()
+        .setEx(getAccountRequest.value.id, 3600, JSON.stringify(data));
 
-        return data;
-
+      return data;
     } catch (error: any) {
       throw new Error(error.message);
     }
@@ -158,9 +164,11 @@ export class AccountService {
         accountNumber: account.accountNumber,
         emailAddress: account.emailAddress,
         identityNumber: account.identityNumber,
-      }
-      await redisClient.getClient().setEx(request.id, 3600, JSON.stringify(data));
-      return data
+      };
+      await redisClient
+        .getClient()
+        .setEx(request.id, 3600, JSON.stringify(data));
+      return data;
     } catch (error: any) {
       throw new Error(error.message);
     }

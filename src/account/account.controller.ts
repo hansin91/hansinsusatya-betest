@@ -9,9 +9,11 @@ class AccountController {
     this.accountService = new AccountService();
   }
 
-  get = async (req: Request, res: Response) => {  
+  get = async (req: Request, res: Response) => {
     try {
-      const account = await this.accountService.get({ id: req.params.accountId });
+      const account = await this.accountService.get({
+        id: req.params.accountId,
+      });
       return res.status(StatusCodes.OK).json(account);
     } catch (error: any) {
       return res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
